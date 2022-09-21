@@ -24,6 +24,9 @@ function update() {
 }
 
 function draw() {
+    // gameBoard.innerHTML = '' clears our game board on every render.
+    // Otherwise when the snake moves we will still see where it was on the last render.
+    gameBoard.innerHTML = ''
     drawSnake(gameBoard);
 }
 
