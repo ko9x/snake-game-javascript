@@ -1,6 +1,8 @@
+import { SNAKE_SPEED, update as updateSnake, draw as drawSnake } from './snake.js';
+
 let lastRenderTime = 0;
-// SNAKE_SPEED is how many times we want to update the snake each second.
-const SNAKE_SPEED = 1;
+// Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html
+const gameBoard = document.getElementById('game-board');
 
 function mainLoop(currentTime) {
   // requestAnimationFrame runs the function you pass it as soon as an animation frame is available.
@@ -13,10 +15,16 @@ function mainLoop(currentTime) {
     return;
   }
   lastRenderTime = currentTime;
-  console.log('Render');
+  update()
+  draw()
+}
 
-//   update()
-//   draw()
+function update() {
+    updateSnake();
+}
+
+function draw() {
+    drawSnake(gameBoard);
 }
 
 // Gets the mainLoop function running which then loops on it's own after that
