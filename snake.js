@@ -1,10 +1,8 @@
 import { getInputDirection } from "./input.js";
 
 // SNAKE_SPEED is how many times we want to update the snake each second.
-export const SNAKE_SPEED = 1;
-const snakeBody = [
-  { x: 11, y: 11 },
-];
+export const SNAKE_SPEED = 10;
+const snakeBody = [{ x: 11, y: 11 }];
 
 // In the update function we first set i as the index of the 2nd to last segment of the snake.
 // Now we tell the last segment that your value is now the value of the 2nd to last segment.
@@ -14,14 +12,27 @@ const snakeBody = [
 // Since this all happens during each render we see the snake move as one solid body.
 
 export function update() {
-   const inputDirection = getInputDirection();
+  const inputDirection = getInputDirection();
+  if (snakeBody[0].y === 1 && inputDirection.y === -1) {
+    console.log('hitWall'); //@DEBUG
+  }
+  if (snakeBody[0].x === 1 && inputDirection.x === -1) {
+    console.log('hitWall'); //@DEBUG
+  }
+  if (snakeBody[0].y === 21 && inputDirection.y === 1) {
+    console.log('hitWall'); //@DEBUG
+  }
+  if (snakeBody[0].x === 21 && inputDirection.x === 1) {
+    console.log('hitWall'); //@DEBUG
+  }
+
   // find the 2nd to last index of the snakeBody array.
   for (let i = snakeBody.length - 2; i >= 0; i--) {
     // change the value of the last index to the value of the 2nd to last index.
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
 
-  //   once the loop hits the index of 0 we set the value for the head of the snake
+  // once the loop hits the index of 0 we set the value for the head of the snake
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }
