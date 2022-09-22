@@ -2,7 +2,15 @@ import { getInputDirection } from "./input.js";
 
 // SNAKE_SPEED is how many times we want to update the snake each second.
 export const SNAKE_SPEED = 10;
-const snakeBody = [{ x: 11, y: 11 }];
+export const snakeBody = [{ x: 11, y: 11 }];
+
+// The expandSnake function just adds however many segments to the tail passed in the food.js
+export function expandSnake(num) {
+    for (let i = num; i > 0; i--) {
+        const tail = snakeBody.length - 1;
+        snakeBody[tail + 1] = { ...snakeBody[0] }
+    }
+}
 
 // In the update function we first set i as the index of the 2nd to last segment of the snake.
 // Now we tell the last segment that your value is now the value of the 2nd to last segment.

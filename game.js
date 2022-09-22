@@ -1,4 +1,5 @@
 import { SNAKE_SPEED, update as updateSnake, draw as drawSnake } from './snake.js';
+import { update as updateFood, draw as drawFood } from './food.js';
 
 let lastRenderTime = 0;
 // Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html
@@ -21,6 +22,7 @@ function mainLoop(currentTime) {
 
 function update() {
     updateSnake();
+    updateFood();
 }
 
 function draw() {
@@ -28,6 +30,7 @@ function draw() {
     // Otherwise when the snake moves we will still see where it was on the last render.
     gameBoard.innerHTML = ''
     drawSnake(gameBoard);
+    drawFood(gameBoard);
 }
 
 // Gets the mainLoop function running which then loops on it's own after that
