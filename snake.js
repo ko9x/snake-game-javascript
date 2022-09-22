@@ -1,15 +1,15 @@
 import { getInputDirection } from "./input.js";
 
 // SNAKE_SPEED is how many times we want to update the snake each second.
-export const SNAKE_SPEED = 10;
+export const SNAKE_SPEED = 6;
 export const snakeBody = [{ x: 11, y: 11 }];
 
 // The expandSnake function just adds however many segments to the tail passed in the food.js
 export function expandSnake(num) {
-    for (let i = num; i > 0; i--) {
-        const tail = snakeBody.length - 1;
-        snakeBody[tail + 1] = { ...snakeBody[0] }
-    }
+  for (let i = num; i > 0; i--) {
+    const tail = snakeBody.length - 1;
+    snakeBody[tail + 1] = { ...snakeBody[1] };
+  }
 }
 
 // In the update function we first set i as the index of the 2nd to last segment of the snake.
@@ -19,20 +19,36 @@ export function expandSnake(num) {
 // Now we update the location of the segment at the 0 index.
 // Since this all happens during each render we see the snake move as one solid body.
 
+function wallImpact(dir) {
+  if (snakeBody[0].y === 1 && dir.y === -1) {
+    console.log("hitWall"); //@DEBUG
+  }
+  if (snakeBody[0].x === 1 && dir.x === -1) {
+    console.log("hitWall"); //@DEBUG
+  }
+  if (snakeBody[0].y === 21 && dir.y === 1) {
+    console.log("hitWall"); //@DEBUG
+  }
+  if (snakeBody[0].x === 21 && dir.x === 1) {
+    console.log("hitWall"); //@DEBUG
+  }
+}
+
+function ouroboros() {
+  snakeBody.slice(1).forEach((segment) => {
+    if (snakeBody[0].y === segment.y) {
+      if(snakeBody[0].x === segment.x) {
+        console.log('hit?', ); //@DEBUG
+      }
+    }
+  });
+}
+
 export function update() {
   const inputDirection = getInputDirection();
-  if (snakeBody[0].y === 1 && inputDirection.y === -1) {
-    console.log('hitWall'); //@DEBUG
-  }
-  if (snakeBody[0].x === 1 && inputDirection.x === -1) {
-    console.log('hitWall'); //@DEBUG
-  }
-  if (snakeBody[0].y === 21 && inputDirection.y === 1) {
-    console.log('hitWall'); //@DEBUG
-  }
-  if (snakeBody[0].x === 21 && inputDirection.x === 1) {
-    console.log('hitWall'); //@DEBUG
-  }
+
+  wallImpact(inputDirection);
+  ouroboros();
 
   // find the 2nd to last index of the snakeBody array.
   for (let i = snakeBody.length - 2; i >= 0; i--) {
