@@ -1,39 +1,26 @@
 import { snakeBody, expandSnake } from "./snake.js";
 
-const food = { x: 6, y: 13 };
+const food = {};
 const EXPANSION_RATE = 20;
-const snakeTail = 0;
-let badNum = false;
 
 function getRandomSpot() {
   let num = {};
-  console.log("here"); //@DEBUG
 
   // I needed to prevent 0 from occuring because it caused the food to be rendered but not eatable
   num.x = Math.floor(Math.random() * 20 + 1);
   num.y = Math.floor(Math.random() * 20 + 1);
 
-  if (!badNum) {
-    snakeBody.forEach((segment) => {
-      if (segment.y === num.x) {
-        if (segment.x === num.y) {
-          num.bad = 1;
-          console.log("SEGMENT", segment); //@DEBUG
-          console.log("NUM", num); //@DEBUG
-        }
+  // Check to see if the food landed on the snake
+  snakeBody.forEach((segment) => {
+    if (segment.y === num.x) {
+      if (segment.x === num.y) {
+        num.bad = 1;
       }
-      if (!badNum) {
-        // console.log("!badNum", num); //@DEBUG
-        food.x = num.x;
-        food.y = num.y;
-        food.bad = num.bad;
-      }
-      if (badNum) {
-        console.log("badNum", num); //@DEBUG
-        // getRandomSpot();
-      }
-    });
-  }
+    }
+    food.x = num.x;
+    food.y = num.y;
+    food.bad = num.bad;
+  });
 }
 
 function onSnake(food) {
@@ -52,9 +39,9 @@ export function update() {
 }
 
 export function draw(gameBoard) {
+  // If the food landed on the snake run getRandomSpot again otherwise draw the food
   if (food.bad) {
-    console.log('hit the thing in the Draw!!!', ); //@DEBUG
-    getRandomSpot()
+    getRandomSpot();
   } else {
     const foodElement = document.createElement("div");
     foodElement.style.gridRowStart = food.x;
