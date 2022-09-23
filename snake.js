@@ -12,6 +12,11 @@ export function expandSnake(num) {
   }
 }
 
+function gameOver() {
+  alert("Game Over");
+  window.location.reload();
+}
+
 // In the update function we first set i as the index of the 2nd to last segment of the snake.
 // Now we tell the last segment that your value is now the value of the 2nd to last segment.
 // This repeats until we get to index 0.
@@ -21,24 +26,24 @@ export function expandSnake(num) {
 
 function wallImpact(dir) {
   if (snakeBody[0].y === 1 && dir.y === -1) {
-    console.log("hitWall"); //@DEBUG
+    gameOver();
   }
   if (snakeBody[0].x === 1 && dir.x === -1) {
-    console.log("hitWall"); //@DEBUG
+    gameOver();
   }
   if (snakeBody[0].y === 21 && dir.y === 1) {
-    console.log("hitWall"); //@DEBUG
+    gameOver();
   }
   if (snakeBody[0].x === 21 && dir.x === 1) {
-    console.log("hitWall"); //@DEBUG
+    gameOver();
   }
 }
 
 function ouroboros() {
   snakeBody.slice(1).forEach((segment) => {
     if (snakeBody[0].y === segment.y) {
-      if(snakeBody[0].x === segment.x) {
-        console.log('hit?', ); //@DEBUG
+      if (snakeBody[0].x === segment.x) {
+        gameOver();
       }
     }
   });
