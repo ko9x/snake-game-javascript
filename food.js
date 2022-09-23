@@ -1,7 +1,8 @@
+import { setExpansion } from "./game.js";
 import { snakeBody, expandSnake } from "./snake.js";
 
 const food = {};
-const EXPANSION_RATE = 20;
+let EXPANSION_RATE = 1;
 
 function getRandomSpot() {
   let num = {};
@@ -32,6 +33,7 @@ function onSnake(food) {
 getRandomSpot();
 
 export function update() {
+  EXPANSION_RATE = setExpansion()
   if (onSnake(food)) {
     getRandomSpot();
     expandSnake(EXPANSION_RATE);
