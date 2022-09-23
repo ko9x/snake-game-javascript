@@ -1,7 +1,6 @@
 import { getInputDirection } from "./input.js";
 
 // SNAKE_SPEED is how many times we want to update the snake each second.
-export const SNAKE_SPEED = 6;
 export const snakeBody = [{ x: 11, y: 11 }];
 export let gameOver = false;
 

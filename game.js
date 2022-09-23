@@ -1,10 +1,13 @@
-import { SNAKE_SPEED, update as updateSnake, draw as drawSnake, gameOver } from './snake.js';
+import { update as updateSnake, draw as drawSnake, gameOver } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 let lastRenderTime = 0;
 // Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html
 const gameBoard = document.getElementById('game-board');
 
+const speed = document.getElementById('speed');
+
 function mainLoop(currentTime) {
+  const SNAKE_SPEED = speed.value || 1
   // requestAnimationFrame runs the function you pass it as soon as an animation frame is available.
   //   It may look strange to call the mainLoop function inside of itself but that's how it is done
   if(gameOver) {
