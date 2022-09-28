@@ -1,9 +1,7 @@
 ### What to do next
-* make it so the speed and expansion can only be set before the game starts
-    * once it starts they are greyed out.
-* make a high score
-    * most food eaten
-        * display the speed the game was set to and the expansion rate
+
+
+### Maybe do later
 * make the expansion rate, speed, and score persist until the user refreshes
     * this will involve changing the way the user starts a new game
 * make a blackout mode
@@ -24,3 +22,8 @@
     * need to somehow make the snake stop moving when the game over happens
 * allow the user to set the speed
 * allow the user to set the expansion rate
+* make it so the speed and expansion can only be set before the game starts
+    * once it starts they are greyed out.
+* Display the score
+    * food eaten
+        * display the speed the game was set to and the expansion rate
