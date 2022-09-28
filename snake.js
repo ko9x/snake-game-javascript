@@ -3,6 +3,7 @@ import { getInputDirection } from "./input.js";
 // SNAKE_SPEED is how many times we want to update the snake each second.
 export const snakeBody = [{ x: 11, y: 11 }];
 export let gameOver = false;
+export let gameStarted = false;
 
 // The expandSnake function just adds however many segments to the tail passed in the food.js
 export function expandSnake(num) {
@@ -50,6 +51,11 @@ function ouroboros() {
 
 export function update() {
   const inputDirection = getInputDirection();
+  if (inputDirection.x === 0 && inputDirection.y  === 0) {
+    return 
+  } else {
+    gameStarted = true;
+  }
 
   wallImpact(inputDirection);
   ouroboros();

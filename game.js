@@ -1,4 +1,4 @@
-import { update as updateSnake, draw as drawSnake, gameOver } from './snake.js';
+import { update as updateSnake, draw as drawSnake, gameOver, gameStarted } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 let lastRenderTime = 0;
 // Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html
@@ -10,12 +10,25 @@ const speed = document.getElementById('speed');
 // Linking the const expansion to the input with the id of expansion in the index.html
 const expansion = document.getElementById('expansion');
 
+// Linking the const restart to the button with the id of restart in the index.html
+const restart = document.getElementById('restart');
+restart.hidden = true;
+
+restart.addEventListener('click', () => {
+  window.location.reload();
+})
+
 export function setExpansion() {
   return expansion.value
 }
 
 function mainLoop(currentTime) {
   const SNAKE_SPEED = speed.value || 1
+  if (gameStarted) {
+    speed.hidden = true;
+    expansion.hidden = true;
+    restart.hidden = false;
+  }
   // requestAnimationFrame runs the function you pass it as soon as an animation frame is available.
   //   It may look strange to call the mainLoop function inside of itself but that's how it is done
   if(gameOver) {
