@@ -11,9 +11,18 @@ const gameBoard = document.getElementById("game-board");
 
 // Linking the const speed to the input with the id of speed in the index.html
 const speed = document.getElementById("speed");
+// Preventing the user from entering a letter as the speed value
+speed.addEventListener("keypress", (e) => {
+  if (isFinite(e.key)) {
+  } else {
+    speed.blur();
+    document.getElementById("speed").placeholder = "Enter a number";
+  }
+});
 
 // Linking the const expansion to the input with the id of expansion in the index.html
 const expansion = document.getElementById("expansion");
+// Preventing the user from entering a letter as the expansion value
 expansion.addEventListener("keypress", (e) => {
   if (isFinite(e.key)) {
   } else {
@@ -38,10 +47,8 @@ function mainLoop(currentTime) {
   const SNAKE_SPEED = speed.value || 10;
   if (gameStarted) {
     speed.hidden = true;
+    expansion.hidden = true;
     restart.hidden = false;
-    if (expansion) {
-      expansion.hidden = true;
-    }
   }
   // requestAnimationFrame runs the function you pass it as soon as an animation frame is available.
   //   It may look strange to call the mainLoop function inside of itself but that's how it is done
