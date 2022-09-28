@@ -28,6 +28,53 @@
         background-color: hsl(200, 100%, 50%);
         border: 0.25vmin solid black;
       }
+      .head {
+        background-color: blueviolet;
+      }
+      .head-up {
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+      }
+      .head-down {
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+      }
+      .head-left {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+      .head-right {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+      }
+      .tail-up {
+        width: 0;
+        height: 0;
+        border-left: 3vmax solid transparent;
+        border-right: 3vmax solid transparent;
+        border-bottom: 5vmax solid green;
+      }
+      .tail-down {
+        width: 0;
+        height: 0;
+        border-left: 3vmax solid transparent;
+        border-right: 3vmax solid transparent;
+        border-top: 5vmax solid green;
+      }
+      .tail-left {
+        width: 0;
+        height: 0;
+        border-top: 3vmax solid transparent;
+        border-bottom: 3vmax solid transparent;
+        border-right: 5vmax solid green;
+      }
+      .tail-right {
+        width: 0;
+        height: 0;
+        border-top: 3vmax solid transparent;
+        border-bottom: 3vmax solid transparent;
+        border-left: 5vmax solid green;
+      }
       .food {
         background-color: hsl(50, 100%, 50%);
         border: 0.25vmin solid black;
@@ -41,7 +88,7 @@
     <div id="menu">
       <input id="speed" placeholder="Speed" />
       <input id="expansion" placeholder="Expansion" />
-      <button id="restart" >Restart</button>
+      <button id="restart">Restart</button>
     </div>
     <div id="game-board"></div>
   </body>

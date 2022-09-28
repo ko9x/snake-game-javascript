@@ -48,9 +48,10 @@ function ouroboros() {
     }
   });
 }
+let inputDirection;
 
 export function update() {
-  const inputDirection = getInputDirection();
+  inputDirection  = getInputDirection();
   if (inputDirection.x === 0 && inputDirection.y  === 0) {
     return 
   } else {
@@ -70,16 +71,52 @@ export function update() {
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }
-
+let secondToLast = {}
 export function draw(gameBoard) {
-  snakeBody.forEach((segment) => {
+  snakeBody.forEach((segment, index) => {
     // Here we are create an hmtl element with javascript. A div in this instance.
     const snakeElement = document.createElement("div");
     // Then we add style and class elements to our custom div.
     snakeElement.style.gridRowStart = segment.y;
     snakeElement.style.gridColumnStart = segment.x;
     // snake is a css class we created in the index.html. We access it here using classlist.add
-    snakeElement.classList.add("snake");
+    if(index === 0) {
+      snakeElement.classList.add("head");
+      if(inputDirection.x === 0 && inputDirection.y === -1) {
+        snakeElement.innerHTML = "";
+        snakeElement.classList.add("head-up");
+      }
+      if(inputDirection.x === -1 && inputDirection.y === 0) {
+        snakeElement.innerHTML = "";
+        snakeElement.classList.add('head-left')
+      }
+      if(inputDirection.x === 1 && inputDirection.y === 0) {
+        snakeElement.innerHTML = "";
+        snakeElement.classList.add('head-right')
+      }
+      if(inputDirection.x === 0 && inputDirection.y === 1) {
+        snakeElement.innerHTML = "";
+        snakeElement.classList.add('head-down')
+      }
+    }
+    if (index === snakeBody.length - 1) {
+      if(secondToLast.x > segment.x) {
+        snakeElement.classList.add('tail-left')
+      }
+      if(secondToLast.y > segment.y) {
+        snakeElement.classList.add('tail-up')
+      }
+      if(secondToLast.y < segment.y) {
+        snakeElement.classList.add('tail-down')
+      }
+      if(secondToLast.x < segment.x) {
+        snakeElement.classList.add('tail-right')
+      }
+    } else {
+      snakeElement.classList.add('snake');
+      secondToLast = {x: segment.x, y: segment.y};
+    }
+
     // If you console.log snakeElement it will look like this
     // <div class='snake' style="grid-row-start: 11; grid-column-start: 11;"></div>
     // adding our snakeElemnt to the game-board div in the index.htmml
