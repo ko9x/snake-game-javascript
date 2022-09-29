@@ -81,7 +81,7 @@ export function draw(gameBoard) {
     snakeElement.style.gridColumnStart = segment.x;
     // snake is a css class we created in the index.html. We access it here using classlist.add
     if(index === 0) {
-      snakeElement.classList.add("head");
+      snakeElement.classList.add("snake-purple");
       if(inputDirection.x === 0 && inputDirection.y === -1) {
         snakeElement.innerHTML = "";
         snakeElement.classList.add("head-up");
@@ -113,7 +113,11 @@ export function draw(gameBoard) {
         snakeElement.classList.add('tail-right')
       }
     } else {
-      snakeElement.classList.add('snake');
+      if (index % 2) {
+        snakeElement.classList.add('snake-blue');
+      } else {
+        snakeElement.classList.add('snake-purple');
+      }
       secondToLast = {x: segment.x, y: segment.y};
     }
 
