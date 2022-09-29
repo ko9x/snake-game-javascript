@@ -34,7 +34,7 @@ function onSnake(food) {
 getRandomSpot();
 
 export function update() {
-  let EXPANSION_RATE = (setExpansion() || 1)
+  let EXPANSION_RATE = setExpansion() || 1;
   if (onSnake(food)) {
     foodCounter += 1;
     getRandomSpot();

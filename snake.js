@@ -51,9 +51,9 @@ function ouroboros() {
 let inputDirection;
 
 export function update() {
-  inputDirection  = getInputDirection();
-  if (inputDirection.x === 0 && inputDirection.y  === 0) {
-    return 
+  inputDirection = getInputDirection();
+  if (inputDirection.x === 0 && inputDirection.y === 0) {
+    return;
   } else {
     gameStarted = true;
   }
@@ -71,7 +71,7 @@ export function update() {
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }
-let secondToLast = {}
+let secondToLast = {};
 export function draw(gameBoard) {
   snakeBody.forEach((segment, index) => {
     // Here we are create an hmtl element with javascript. A div in this instance.
@@ -80,32 +80,31 @@ export function draw(gameBoard) {
     snakeElement.style.gridRowStart = segment.y;
     snakeElement.style.gridColumnStart = segment.x;
     // snake is a css class we created in the index.html. We access it here using classlist.add
-    if(index === 0) {
+    if (index === 0) {
       snakeElement.classList.add("snake-purple");
-      if(inputDirection.x === 0 && inputDirection.y === -1) {
+      if (inputDirection.x === 0 && inputDirection.y === -1) {
         snakeElement.innerHTML = "";
         snakeElement.classList.add("head-up");
       }
-      if(inputDirection.x === -1 && inputDirection.y === 0) {
+      if (inputDirection.x === -1 && inputDirection.y === 0) {
         snakeElement.innerHTML = "";
-        snakeElement.classList.add('head-left')
+        snakeElement.classList.add("head-left");
       }
-      if(inputDirection.x === 1 && inputDirection.y === 0) {
+      if (inputDirection.x === 1 && inputDirection.y === 0) {
         snakeElement.innerHTML = "";
-        snakeElement.classList.add('head-right')
+        snakeElement.classList.add("head-right");
       }
-      if(inputDirection.x === 0 && inputDirection.y === 1) {
+      if (inputDirection.x === 0 && inputDirection.y === 1) {
         snakeElement.innerHTML = "";
-        snakeElement.classList.add('head-down')
+        snakeElement.classList.add("head-down");
       }
     } else {
       if (index % 2) {
-        snakeElement.classList.add('snake-blue');
+        snakeElement.classList.add("snake-blue");
       } else {
-        snakeElement.classList.add('snake-purple');
+        snakeElement.classList.add("snake-purple");
       }
     }
-
     // If you console.log snakeElement it will look like this
     // <div class='snake' style="grid-row-start: 11; grid-column-start: 11;"></div>
     // adding our snakeElemnt to the game-board div in the index.htmml
