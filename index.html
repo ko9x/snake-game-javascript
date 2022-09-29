@@ -76,6 +76,38 @@
         border-bottom: 2.25vmax solid transparent;
         border-left: 5vmax solid green;
       }
+      .heart {
+        position: relative;
+        width: 10.0px;
+        height: 9.0px;
+        margin-top: 1.0px;
+        border-color: black;
+        border-width: 1px solid black;
+      }
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 13px;
+        height: 20px;
+        border-radius: 50px 50px 0 0;
+        background: red;
+        border-color: black;
+        border-width: 1px solid black;
+      }
+
+      .heart::before {
+        left: 12px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .heart::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
       .food {
         background-color: hsl(50, 100%, 50%);
         border: 0.25vmax solid black;

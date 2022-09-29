@@ -50,7 +50,7 @@ export function draw(gameBoard) {
     const foodElement = document.createElement("div");
     foodElement.style.gridRowStart = food.x;
     foodElement.style.gridColumnStart = food.y;
-    foodElement.classList.add("food");
+    foodElement.classList.add("heart");
     gameBoard.appendChild(foodElement);
   }
 }
