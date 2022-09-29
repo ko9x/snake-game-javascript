@@ -98,27 +98,12 @@ export function draw(gameBoard) {
         snakeElement.innerHTML = "";
         snakeElement.classList.add('head-down')
       }
-    }
-    if (index === snakeBody.length - 1) {
-      if(secondToLast.x > segment.x) {
-        snakeElement.classList.add('tail-left')
-      }
-      if(secondToLast.y > segment.y) {
-        snakeElement.classList.add('tail-up')
-      }
-      if(secondToLast.y < segment.y) {
-        snakeElement.classList.add('tail-down')
-      }
-      if(secondToLast.x < segment.x) {
-        snakeElement.classList.add('tail-right')
-      }
     } else {
       if (index % 2) {
         snakeElement.classList.add('snake-blue');
       } else {
         snakeElement.classList.add('snake-purple');
       }
-      secondToLast = {x: segment.x, y: segment.y};
     }
 
     // If you console.log snakeElement it will look like this
