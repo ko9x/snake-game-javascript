@@ -8,11 +8,11 @@ export let gameStarted = false;
 // The expandSnake function just adds however many segments to the tail passed in the food.js
 export function expandSnake(num) {
   for (let i = num; i > 0; i--) {
-    const tail = snakeBody.length - 1;
-    snakeBody[tail + 1] = { ...snakeBody[1] };
+    snakeBody[snakeBody.length] = { ...snakeBody[1] };
   }
 }
 
+// Change the gameOver value to true and pass that info to the game.js
 function gameIsOver() {
   gameOver = true;
 }
@@ -24,6 +24,7 @@ function gameIsOver() {
 // Now we update the location of the segment at the 0 index.
 // Since this all happens during each render we see the snake move as one solid body.
 
+// Check to see if the snake has run into a wall
 function wallImpact(dir) {
   if (snakeBody[0].y === 1 && dir.y === -1) {
     gameIsOver();
@@ -39,6 +40,7 @@ function wallImpact(dir) {
   }
 }
 
+// Check to see if the snake has run into itself
 function ouroboros() {
   snakeBody.slice(1).forEach((segment) => {
     if (snakeBody[0].y === segment.y) {
@@ -52,18 +54,21 @@ let inputDirection;
 
 export function update() {
   inputDirection = getInputDirection();
+  // Check to see if the gamer has pressed a direction to start the game
   if (inputDirection.x === 0 && inputDirection.y === 0) {
     return;
   } else {
+    // If the gamer has started the game by pressing a direction we pass that info to the game.js
     gameStarted = true;
   }
 
   wallImpact(inputDirection);
   ouroboros();
 
-  // find the 2nd to last index of the snakeBody array.
+  // This for loop is what actually makes the snake appear to move
+  // We find the 2nd to last index of the snakeBody array.
   for (let i = snakeBody.length - 2; i >= 0; i--) {
-    // change the value of the last index to the value of the 2nd to last index.
+    // and change the value of the last index to the value of the 2nd to last index.
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
 
@@ -71,7 +76,7 @@ export function update() {
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }
-let secondToLast = {};
+
 export function draw(gameBoard) {
   snakeBody.forEach((segment, index) => {
     // Here we are create an hmtl element with javascript. A div in this instance.
@@ -79,7 +84,7 @@ export function draw(gameBoard) {
     // Then we add style and class elements to our custom div.
     snakeElement.style.gridRowStart = segment.y;
     snakeElement.style.gridColumnStart = segment.x;
-    // snake is a css class we created in the index.html. We access it here using classlist.add
+    // snake is a css class we created in the index.html We access it here using classlist.add
     if (index === 0) {
       snakeElement.classList.add("snake-purple");
       if (inputDirection.x === 0 && inputDirection.y === -1) {

@@ -4,7 +4,12 @@ import {
   gameOver,
   gameStarted,
 } from "./snake.js";
-import { update as updateFood, draw as drawFood, foodCounter } from "./food.js";
+import { 
+  update as updateFood,
+  draw as drawFood,
+  foodCounter
+ } from "./food.js";
+
 let lastRenderTime = 0;
 // Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html
 const gameBoard = document.getElementById("game-board");
@@ -51,7 +56,7 @@ function mainLoop(currentTime) {
     restart.hidden = false;
   }
   // requestAnimationFrame runs the function you pass it as soon as an animation frame is available.
-  //   It may look strange to call the mainLoop function inside of itself but that's how it is done
+  // It may look strange to call the mainLoop function inside of itself but that's how it is done
   if (gameOver) {
     window.cancelAnimationFrame(mainLoop);
     alert(
