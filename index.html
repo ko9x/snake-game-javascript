@@ -7,7 +7,9 @@
     <title>Snake</title>
     <style>
       body {
+        /* 100vh means take up 100% of the viewport (screen) height  */
         height: 100vh;
+        /* 100vw means take up 100% of the viewport (screen) width  */
         width: 100vw;
         display: flex;
         flex-direction: column;
@@ -18,18 +20,26 @@
       }
       #game-board {
         background-color: #ccc;
+        /* vmin checks the viewport width and height and sets the value to the lower one*/
+        /* This way the gameboard will always be square even if my screen is taller than it is wide */
         width: 100vmin;
-        height: 100vmin;
+        height: 100vh;
         display: grid;
+        /* grid-template-rows: repeat(21, 1fr) divides the screen into 21 equal rows*/
+        /* grid-template-columns: repeat(21, 1fr) divides the screen into 21 equal columns*/
+        /* Each of the 21 elements has a grid-row-start and grid-row-end (or grid-column-start/end) */
+        /* We can use these start and end points to select squares on the grid with coordinates */
         grid-template-rows: repeat(21, 1fr);
         grid-template-columns: repeat(21, 1fr);
       }
       .snake-blue {
         background-color: hsl(200, 100%, 50%);
+        /* border: 0.25vmax will scale the thickness of the border relative to the screen size */
         border: 0.25vmax solid black;
       }
       .snake-purple {
         background-color: blueviolet;
+        /* border: 0.25vmax will scale the thickness of the border relative to the screen size */
         border: 0.25vmax solid black;
       }
       .head-up {
@@ -68,13 +78,11 @@
         border-color: black;
         border-width: 1px solid black;
       }
-
       .heart::before {
         left: 12px;
         transform: rotate(-45deg);
         transform-origin: 0 100%;
       }
-
       .heart::after {
         left: 0;
         transform: rotate(45deg);

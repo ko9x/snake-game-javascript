@@ -106,8 +106,8 @@ export function draw(gameBoard) {
       }
     }
     // If you console.log snakeElement it will look like this
-    // <div class='snake' style="grid-row-start: 11; grid-column-start: 11;"></div>
-    // adding our snakeElemnt to the game-board div in the index.htmml
+    // <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
+    // adding our snakeElemnt to the game-board div in the index.html
     gameBoard.appendChild(snakeElement);
   });
 }
