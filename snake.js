@@ -72,7 +72,7 @@ export function update() {
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
 
-  // once the loop hits the index of 0 we set the value for the head of the snake
+  // once the loop is done we set the value for the head of the snake
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }
