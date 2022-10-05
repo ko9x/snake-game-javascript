@@ -17,13 +17,6 @@ function gameIsOver() {
   gameOver = true;
 }
 
-// In the update function we first set i as the index of the 2nd to last segment of the snake.
-// Now we tell the last segment that your value is now the value of the 2nd to last segment.
-// This repeats until we get to index 0.
-// Once the statement is no longer true, the for loop ends.
-// Now we update the location of the segment at the 0 index.
-// Since this all happens during each render we see the snake move as one solid body.
-
 // Check to see if the snake has run into a wall
 function wallImpact(dir) {
   if (snakeBody[0].y === 1 && dir.y === -1) {
@@ -50,8 +43,14 @@ function ouroboros() {
     }
   });
 }
-let inputDirection;
 
+let inputDirection;
+// In the update function for loop we first set i as the index of the 2nd to last segment of the snake.
+// Now we tell the last segment that your value is now the value of the 2nd to last segment.
+// This repeats until we get to index 0.
+// Once the statement is no longer true, the for loop ends.
+// Now we update the location of the segment at the 0 index.
+// Since this all happens during each render we see the snake move as one solid body.
 export function update() {
   inputDirection = getInputDirection();
   // Check to see if the gamer has pressed a direction to start the game
@@ -77,42 +76,56 @@ export function update() {
   snakeBody[0].y += inputDirection.y;
 }
 
+// Now that the update is done we can draw the updated snakeBody
+// Every time a frame is requested we run the update function first and then the draw function
 export function draw(gameBoard) {
   snakeBody.forEach((segment, index) => {
     // Here we are create an hmtl element with javascript. A div in this instance.
+    // <div></div>
     const snakeElement = document.createElement("div");
-    // Then we add style and class elements to our custom div.
+    // Then we add a style element so it knows where it will be drawn in the grid.
+    // <div style="grid-row-start: 11; grid-column-start: 11;"></div>
     snakeElement.style.gridRowStart = segment.y;
     snakeElement.style.gridColumnStart = segment.x;
-    // snake is a css class we created in the index.html We access it here using classlist.add
+    // Now we add styles based on which segment of the snake is being rendered by the forEach
+    // First we want to draw the head based on which direction the gamer pressed
+    // If the index is 0 we know it is the head so we give it the class of snake-purple
+    // <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
     if (index === 0) {
       snakeElement.classList.add("snake-purple");
+      // Depending on the direction the gamer pressed we add another class to the list
+      // <div class='snake-purple head-up' style="grid-row-start: 5; grid-column-start: 5;"></div>
       if (inputDirection.x === 0 && inputDirection.y === -1) {
-        snakeElement.innerHTML = "";
         snakeElement.classList.add("head-up");
       }
+       // <div class='snake-purple head-left' style="grid-row-start: 5; grid-column-start: 5;"></div>
       if (inputDirection.x === -1 && inputDirection.y === 0) {
-        snakeElement.innerHTML = "";
         snakeElement.classList.add("head-left");
       }
+       // <div class='snake-purple head-right' style="grid-row-start: 5; grid-column-start: 5;"></div>
       if (inputDirection.x === 1 && inputDirection.y === 0) {
-        snakeElement.innerHTML = "";
         snakeElement.classList.add("head-right");
       }
+       // <div class='snake-purple head-down' style="grid-row-start: 5; grid-column-start: 5;"></div>
       if (inputDirection.x === 0 && inputDirection.y === 1) {
-        snakeElement.innerHTML = "";
         snakeElement.classList.add("head-down");
       }
     } else {
+      // Here we check if the segment is even or odd and add a class accordingly
       if (index % 2) {
+         // <div class='snake-blue' style="grid-row-start: 5; grid-column-start: 5;"></div>
         snakeElement.classList.add("snake-blue");
       } else {
+         // <div class='snake-purple' style="grid-row-start: 5; grid-column-start: 5;"></div>
         snakeElement.classList.add("snake-purple");
       }
     }
-    // If you console.log snakeElement it will look like this
+    // If you console.log snakeElement it will look something like this
     // <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
     // adding our snakeElemnt to the game-board div in the index.html
+    // <div id="game-board">
+    //    <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
+    // </div>
     gameBoard.appendChild(snakeElement);
   });
 }
