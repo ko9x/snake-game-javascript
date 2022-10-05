@@ -8,7 +8,7 @@
     * the snake can run into itself but walls still end the game
         * it's difficult because you can't see where you are once the snake is crazy long
             * the game ends when there is no spot to put the food that isn't on the snake
-* think of other features a snake game has
+* think of other features a snake game could have
 * refactor code
 
 ### Bugs
