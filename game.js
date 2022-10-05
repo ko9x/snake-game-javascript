@@ -8,7 +8,7 @@ import {
   update as updateFood,
   draw as drawFood,
   foodCounter
- } from "./food.js";
+} from "./food.js";
 
 let lastRenderTime = 0;
 // Linking the const gameBoard to the div we gave the id of 'game-board' in the index.html

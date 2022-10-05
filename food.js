@@ -8,7 +8,7 @@ export let foodCounter = 0;
 function getRandomSpot() {
   let num = {};
 
-  // I needed to prevent 0 from occuring because the grid is from 1-21
+  // I needed to prevent 0 from occuring because css grid starts at 1
   // If the food is rendered at 0 it will show on the screen but cannot be eaten
   // Because the snake will never make it to 0 because it does not exist in the grid
   num.x = Math.floor(Math.random() * 20 + 1);
@@ -33,6 +33,9 @@ function onSnake(food) {
   }
 }
 
+// We call this function here so we have a piece of food on the screen before the user start the game.
+// Since this file contains properties that are imported by the game.js everything in this file runs
+// on the initial render.
 getRandomSpot();
 
 export function update() {

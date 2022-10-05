@@ -8,7 +8,7 @@ export let gameStarted = false;
 // The expandSnake function just adds however many segments to the tail passed in the food.js
 export function expandSnake(num) {
   for (let i = num; i > 0; i--) {
-    snakeBody[snakeBody.length] = { ...snakeBody[1] };
+    snakeBody.push({...snakeBody[1]});
   }
 }
 
