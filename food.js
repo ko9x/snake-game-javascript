@@ -8,7 +8,9 @@ export let foodCounter = 0;
 function getRandomSpot() {
   let num = {};
 
-  // I needed to prevent 0 from occuring because it caused the food to be rendered but not eatable
+  // I needed to prevent 0 from occuring because the grid is from 1-21
+  // If the food is rendered at 0 it will show on the screen but cannot be eaten
+  // Because the snake will never make it to 0 because it does not exist in the grid
   num.x = Math.floor(Math.random() * 20 + 1);
   num.y = Math.floor(Math.random() * 20 + 1);
 

@@ -124,7 +124,7 @@ export function draw(gameBoard) {
     // <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
     // adding our snakeElemnt to the game-board div in the index.html
     // <div id="game-board">
-    //    <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
+      //  <div class='snake-purple' style="grid-row-start: 11; grid-column-start: 11;"></div>
     // </div>
     gameBoard.appendChild(snakeElement);
   });
