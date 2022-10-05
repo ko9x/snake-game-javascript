@@ -5,7 +5,7 @@ const food = {};
 // foodCounter is how we keep score
 export let foodCounter = 0;
 
-function getRandomSpot() {
+function getNewFoodPosition() {
   let num = {};
 
   // I needed to prevent 0 from occuring because css grid starts at 1
@@ -36,21 +36,21 @@ function onSnake(food) {
 // We call this function here so we have a piece of food on the screen before the user start the game.
 // Since this file contains properties that are imported by the game.js everything in this file runs
 // on the initial render.
-getRandomSpot();
+getNewFoodPosition();
 
 export function update() {
   let EXPANSION_RATE = setExpansion() || 1;
   if (onSnake(food)) {
     foodCounter += 1;
-    getRandomSpot();
+    getNewFoodPosition();
     expandSnake(EXPANSION_RATE);
   }
 }
 
 export function draw(gameBoard) {
-  // If the food landed on the snake run getRandomSpot again otherwise draw the food
+  // If the food landed on the snake run getNewFoodPosition again otherwise draw the food
   if (food.bad) {
-    getRandomSpot();
+    getNewFoodPosition();
   } else {
     const foodElement = document.createElement("div");
     foodElement.style.gridRowStart = food.x;
